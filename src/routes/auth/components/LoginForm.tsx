@@ -43,7 +43,7 @@ const LoginForm = () => {
 
       toast.success(result?.message);
 
-      localStorage.setItem("_uAD", result?.data);
+      localStorage.setItem("_uAD", JSON.stringify(result?.data));
 
       navigate("/properties", {
         replace: true,

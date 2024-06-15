@@ -1,4 +1,3 @@
-import { getCookie } from "@/utils/cookie-service";
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
@@ -7,8 +6,9 @@ const ProtectedLayout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = getCookie("token");
-    if (!token) {
+    const user = JSON.parse(localStorage.getItem("_uAD") || "{}");
+
+    if (!user.id) {
       navigate("/login");
       setIsLoading(false);
     } else {

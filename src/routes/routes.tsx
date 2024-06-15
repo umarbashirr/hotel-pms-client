@@ -7,11 +7,16 @@ import ProtectedLayout from "@/layouts/protected-layout";
 
 export const routes = createBrowserRouter([
   {
+    path: "/",
+    index: true,
+    element: <LoginPage />,
+  },
+  {
     path: "login",
     element: <LoginPage />,
   },
   {
-    path: "",
+    path: "/",
     element: <ProtectedLayout />,
     children: [
       {

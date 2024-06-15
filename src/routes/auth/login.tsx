@@ -6,7 +6,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import LoginForm from "./components/LoginForm";
-import { getCookie } from "@/utils/cookie-service";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -15,8 +14,8 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = getCookie("token");
-    if (token) {
+    const user = JSON.parse(localStorage.getItem("_uAD") || "{}");
+    if (user.id) {
       navigate("/properties");
       setIsLoading(false);
     } else {

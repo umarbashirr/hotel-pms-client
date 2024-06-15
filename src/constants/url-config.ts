@@ -1,5 +1,5 @@
 export const APP_URL = {
-  main: "http://localhost:8080",
+  main: import.meta.env.VITE_APP_SERVER_URL,
   api: "/api/v1",
   path: {
     auth: "/auth/login",
