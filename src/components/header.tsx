@@ -5,6 +5,7 @@ import axios from "axios";
 import { APP_URL } from "@/constants/url-config";
 import LoadingButton from "./LoadingButton";
 import { useState } from "react";
+import { propertyIdStorageKey } from "@/constants/property";
 
 const Header = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -43,13 +44,38 @@ const Header = () => {
     }
   };
 
+  const switchMode = () => {
+    const propertyId = JSON.parse(
+      localStorage.getItem(propertyIdStorageKey) || "{}"
+    );
+
+    console.log(Object.keys(propertyId), Object.keys(propertyId)?.length);
+
+    if (Object.keys(propertyId)?.length === 0) {
+      navigate("/properties");
+      return;
+    }
+
+    if (!isConfigured) {
+      navigate(`/properties/${propertyId}/configure/users`);
+    } else {
+      navigate(`/properties/${propertyId}/overview`);
+    }
+  };
+
   return (
     <header className="flex items-center justify-between gap-4 h-16 border-b px-6">
       <p>Search bar will come here</p>
       <div className="flex items-center justify-end gap-4">
-        <Button variant="outline">
-          {isConfigured ? "Frontdesk" : "Configure"}
-        </Button>
+        {!isConfigured ? (
+          <Button variant="outline" onClick={switchMode}>
+            Configure
+          </Button>
+        ) : (
+          <Button variant="outline" onClick={switchMode}>
+            Frontend
+          </Button>
+        )}
         <LoadingButton
           disabled={isLoading}
           isLoading={isLoading}

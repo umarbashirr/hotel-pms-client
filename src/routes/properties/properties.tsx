@@ -1,12 +1,15 @@
 import { Card, CardContent } from "@/components/ui/card";
 import hotelImage from "../../assets/images/hotel-dummy.jpg";
 import { useNavigate } from "react-router-dom";
+import { propertyIdStorageKey } from "@/constants/property";
 
 const PropertiesListPage = () => {
   const navigate = useNavigate();
 
   const selectPropertyHandler = (id: string) => {
     console.log(id);
+
+    localStorage.setItem(propertyIdStorageKey, JSON.stringify(id));
 
     navigate(`/properties/${id}/overview`);
   };

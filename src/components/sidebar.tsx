@@ -23,7 +23,29 @@ const Sidebar = () => {
     },
   ];
 
-  const navigation = frontdeskRoutes;
+  const configureRoutes = [
+    {
+      label: "users",
+      path: "configure/users",
+    },
+    {
+      label: "property",
+      path: "configure/property",
+    },
+
+    {
+      label: "product",
+      path: "configure/product",
+    },
+    {
+      label: "rooms",
+      path: "configure/rooms",
+    },
+  ];
+
+  const navigation = location?.pathname?.includes("configure")
+    ? configureRoutes
+    : frontdeskRoutes;
 
   return (
     <aside className="fixed top-0 left-0 w-full max-w-72 h-full bg-white border-r">
@@ -38,7 +60,7 @@ const Sidebar = () => {
                 to={item?.path}
                 key={index}
                 className={cn(
-                  "flex items-center justify-start text-start gap-2 px-3 py-2 rounded-md   duration-300 ease-in-out transition-all",
+                  "flex items-center justify-start text-start gap-2 px-3 py-2 rounded-md capitalize  duration-300 ease-in-out transition-all",
                   location?.pathname?.endsWith(item?.path)
                     ? "bg-primary text-white"
                     : "bg-white text-primary hover:bg-slate-100"

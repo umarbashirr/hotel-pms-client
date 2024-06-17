@@ -4,6 +4,8 @@ import PropertiesListPage from "./properties/properties";
 import SinglePropertyLayout from "@/layouts/single-property-layout";
 import OverviewPage from "./frontdesk/overview/overview-page";
 import ProtectedLayout from "@/layouts/protected-layout";
+import UsersListPage from "./configure/users";
+import PropertyPage from "./configure/property-page";
 
 export const routes = createBrowserRouter([
   {
@@ -30,6 +32,16 @@ export const routes = createBrowserRouter([
           {
             path: "overview",
             element: <OverviewPage />,
+          },
+
+          // Configure Routes
+          {
+            path: "configure/users",
+            element: <UsersListPage />,
+          },
+          {
+            path: "configure/property",
+            element: <PropertyPage />,
           },
         ],
       },
