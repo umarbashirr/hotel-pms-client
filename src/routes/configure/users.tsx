@@ -1,3 +1,4 @@
+import Modal from "@/components/Modal";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -6,8 +7,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useState } from "react";
+import AccessForm from "./_components/AccessForm";
+import AddNewUser from "./_components/AddNewUser";
 
 const UsersListPage = () => {
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [selectedUser, setSelectedUser] = useState<any>(null);
+
   const users = [
     {
       _id: "60b8d2955f1b2c001f8e4e1d",
@@ -41,8 +48,9 @@ const UsersListPage = () => {
     },
   ];
 
-  const editHandler = (id: string) => {
-    console.log(id);
+  const editHandler = (user: any) => {
+    setIsEditing(true);
+    setSelectedUser(user);
   };
 
   return (
@@ -56,12 +64,10 @@ const UsersListPage = () => {
                 Here you can manage all your users for current property
               </CardDescription>
             </div>
-            <div>
-              <Button>Add New User</Button>
-            </div>
+            <AddNewUser />
           </div>
         </CardHeader>
-        <CardContent>
+        <CardContent className=" overflow-auto">
           <table className="border w-full">
             <thead className="border">
               <tr className="border">
@@ -74,9 +80,9 @@ const UsersListPage = () => {
             <tbody>
               {users?.map((user: any, idx: number) => {
                 return (
-                  <tr className="border">
+                  <tr className="border" key={idx}>
                     <td className="border px-4 py-2 text-start">{idx + 1}</td>
-                    <td className="border px-4 py-2 text-start">
+                    <td className="border px-4 py-2 text-start whitespace-nowrap">
                       {user?.name}
                     </td>
                     <td className="border px-4 py-2 text-start">
@@ -86,7 +92,7 @@ const UsersListPage = () => {
                       {user?.role}
                     </td>
                     <td className="px-4 py-2 flex items-center justify-center">
-                      <Button size="sm" onClick={() => editHandler(user?._id)}>
+                      <Button size="sm" onClick={() => editHandler(user)}>
                         Edit
                       </Button>
                     </td>
@@ -97,6 +103,16 @@ const UsersListPage = () => {
           </table>
         </CardContent>
       </Card>
+      {isEditing && (
+        <Modal
+          title="Edit User"
+          open={isEditing}
+          description="Fill the form to edit user details"
+          setOpen={() => setIsEditing(false)}
+        >
+          <AccessForm isEditing={isEditing} user={selectedUser} />
+        </Modal>
+      )}
     </div>
   );
 };
