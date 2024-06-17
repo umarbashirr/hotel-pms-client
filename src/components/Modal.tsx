@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Dispatch, ReactNode, SetStateAction } from "react";
+import { ReactNode } from "react";
 import {
   Dialog,
   DialogContent,
@@ -14,7 +14,7 @@ interface ModalProps {
   description: string;
   children: ReactNode;
   open: boolean;
-  setOpen: any;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Modal = ({ title, description, children, open, setOpen }: ModalProps) => {
@@ -24,8 +24,8 @@ const Modal = ({ title, description, children, open, setOpen }: ModalProps) => {
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
-          {children}
         </DialogHeader>
+        <div>{children}</div>
       </DialogContent>
     </Dialog>
   );
