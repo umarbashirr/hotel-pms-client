@@ -16,6 +16,8 @@ interface TextInputProps {
   type: string;
   placeholder?: string;
   disabled?: boolean;
+  min?: number;
+  max?: number;
 }
 
 const TextInput = ({
@@ -25,6 +27,8 @@ const TextInput = ({
   type,
   disabled = false,
   placeholder,
+  min,
+  max,
 }: TextInputProps) => {
   return (
     <FormField
@@ -38,6 +42,8 @@ const TextInput = ({
               type={type}
               placeholder={placeholder || ""}
               disabled={disabled}
+              min={min}
+              max={max}
               {...field}
             />
           </FormControl>
