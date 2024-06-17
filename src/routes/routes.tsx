@@ -6,6 +6,8 @@ import OverviewPage from "./frontdesk/overview/overview-page";
 import ProtectedLayout from "@/layouts/protected-layout";
 import UsersListPage from "./configure/users";
 import PropertyPage from "./configure/property-page";
+import RoomTypesPage from "./configure/room-types-page";
+import RoomsPage from "./configure/rooms-page";
 
 export const routes = createBrowserRouter([
   {
@@ -33,8 +35,6 @@ export const routes = createBrowserRouter([
             path: "overview",
             element: <OverviewPage />,
           },
-
-          // Configure Routes
           {
             path: "configure/users",
             element: <UsersListPage />,
@@ -42,6 +42,14 @@ export const routes = createBrowserRouter([
           {
             path: "configure/property",
             element: <PropertyPage />,
+          },
+          {
+            path: "configure/room-types",
+            element: <RoomTypesPage />,
+          },
+          {
+            path: "configure/rooms",
+            element: <RoomsPage />,
           },
         ],
       },

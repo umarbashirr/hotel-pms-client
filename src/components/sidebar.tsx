@@ -34,8 +34,8 @@ const Sidebar = () => {
     },
 
     {
-      label: "product",
-      path: "configure/product",
+      label: "Room Types",
+      path: "configure/room-types",
     },
     {
       label: "rooms",
